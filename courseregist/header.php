@@ -17,6 +17,8 @@ session_start();
 
                         echo "<li><a href='login.php'>Log in</a> <br> </li>";
                 }
+                echo "<li><a href='index.php'>Home</a> <br> </li>";
+                
                 ?>
                 <!--
         لو عايزين تضيفوا 

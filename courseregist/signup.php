@@ -14,6 +14,7 @@
 <body>
     <?php
     include_once "header.php";
+    include_once "include/functions.php";
     ?>
     <h1>Sign up</h1> <br>
     <!-- byro7 3la el data base -->
@@ -53,10 +54,19 @@
         <label> level </label>
         <br>
         <select required name="level">
-            <option value='1'>level 1 </option>
-            <option value='2'>level 2 </option>
-            <option value='3'>level 3 </option>
-            <option value='4'>level 4 </option>
+            <?php
+            for ($i = 1; $i <= 4; $i++)
+                echo "<option value='$i'>level $i</option>"
+            ?>
+        </select>
+        <br>
+        <label> Department </label>
+        <br>
+        <select required name="depart">
+            <?php
+            for ($i = 0; $i <= 12; $i++)
+                echo "<option value='$i'>" . $alldepart[$i] . "</option>";
+            ?>
         </select>
         <br>
         <button type="submit" name="submit">Sign up</button>

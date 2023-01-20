@@ -11,6 +11,7 @@ if (isset($_POST["submit"])) {
     $passrepeat = $_POST["passrepeat"];
     $address=$_POST["address"];
     $level=$_POST["level"];
+    $department=$_POST["depart"];
     if (!idmatch($id, $idrepeat)) 
     {
         // hayrga3 tany 3la el sign up
@@ -30,7 +31,7 @@ if (isset($_POST["submit"])) {
         header("location: ../signup.php?error=emailexists");
         exit();
     }
-    createuser($conn,$name,$id,$phone,$email ,$pass,$address,$level);
+    createuser($conn,$name,$id,$phone,$email ,$pass,$address,$level,$department);
 } else {
     header("location: ../signup.php");
 }

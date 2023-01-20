@@ -15,7 +15,7 @@
     <?php
     include_once "header.php";
     ?>
-    <h1>Log in</h1> <br>
+    <h1>Log in</h1> <a href="signup.php">Don't have an account?</a> <br>
     <form action="include/login.inc.php" method="post">
 
         <label> e-mail </label>
@@ -24,11 +24,13 @@
         <br>
         <label> password </label>
         <br>
+        <!-- show password لو ينفع نضيف الحته بتاعت  ^^ -->
         <input type="password" name="logpass" required>
         <br>
-        <input type="submit" name ='submit' value="Log in">
+        <input type="submit" name='submit' value="Log in">
 
     </form>
+    <a href="forgetpass.php"> forget pass?</a> <br>
     <?php
     if (isset($_GET["error"])) {
         if ($_GET["error"] === "emaildoesntexist") {
@@ -37,10 +39,8 @@
         if ($_GET["error"] === "wrongpass") {
             echo "<p> Enter correct Password </p>";
         }
-        
     }
     ?>
-    <a href="forgetpass.php"> forget pass?</a> <br>
     <?php
     include_once "footer.php";
     ?>
