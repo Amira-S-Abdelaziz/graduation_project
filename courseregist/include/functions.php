@@ -18,6 +18,7 @@ function idexist($conn, $id)
     $sql = "SELECT * FROM users WHERE userNid = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
+        // matgesh gambaha 
         header("location : ../signup.php?error=stmtfailed");
         exit();
     }
@@ -70,27 +71,24 @@ function createuser($conn, $name, $id,  $phone, $email, $pass, $address, $level)
     exit();
 }
 
-function loginuser($conn,$logemail,$logpass)
+function loginuser($conn, $logemail, $logpass)
 {
-    $exist= emailexist($conn, $logemail);
-    if ($exist===false)
-    {
+    $exist = emailexist($conn, $logemail);
+    if ($exist === false) {
         header("location:../login.php?error=emaildoesntexist");
         exit();
     }
 
-    $passhashed= $exist["userPass"];
-    $checkpass = password_verify($logpass,$passhashed);
-    if ($checkpass === false)
-    {
+    $passhashed = $exist["userPass"];
+    $checkpass = password_verify($logpass, $passhashed);
+    if ($checkpass === false) {
         header("location: ../login.php?error=wrongpass");
         exit();
     }
-    else if ($checkpass===true)
-    {
+    if ($checkpass === true) {
         session_start();
-        $_SESSION["userid"]=$exist["id"];
-        $_SESSION["username"]=$exist["userName"];
+        // $_SESSION["userid"] = $exist["id"];
+        $_SESSION["userName"] = $exist["userName"];
         header("location: ../index.php");
         exit();
     }

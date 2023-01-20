@@ -16,6 +16,7 @@
     include_once "header.php";
     ?>
     <h1>Sign up</h1> <br>
+    <!-- byro7 3la el data base -->
     <form action="include/signup.inc.php" method="post">
         <label> name as in national id </label>
         <br>
@@ -66,18 +67,19 @@
      -->
     <?php
     if (isset($_GET["error"])) {
-        if ($_GET["error"] === "iddontmatch") {
-            echo "<p> Enter correct id </p>";
+        if ($_GET["error"] == "iddontmatch") {
+            echo "Enter correct id";
         }
-        if ($_GET["error"] === "idexists") {
+        if ($_GET["error"] == "idexists") {
             echo "<p> National id already exists </p>";
         }
-        if ($_GET["error"] === "passdontmatch") {
+        if ($_GET["error"] == "passdontmatch") {
             echo "<p> Enter correct password </p>";
         }
-        if ($_GET["error"] === "emailexists") {
+        if ($_GET["error"] == "emailexists") {
             echo "<p> E-mail already exists </p>";
-        } else {
+        }
+        if ($_GET["error"] == "none") {
             header("location: login.php");
             exit();
         }

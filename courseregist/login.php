@@ -37,6 +37,7 @@
         if ($_GET["error"] === "wrongpass") {
             echo "<p> Enter correct Password </p>";
         }
+        
     }
     ?>
     <a href="forgetpass.php"> forget pass?</a> <br>

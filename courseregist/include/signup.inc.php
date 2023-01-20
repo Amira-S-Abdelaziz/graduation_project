@@ -11,11 +11,14 @@ if (isset($_POST["submit"])) {
     $passrepeat = $_POST["passrepeat"];
     $address=$_POST["address"];
     $level=$_POST["level"];
-    if (!idmatch($id, $idrepeat)) {
+    if (!idmatch($id, $idrepeat)) 
+    {
+        // hayrga3 tany 3la el sign up
         header("location: ../signup.php?error=iddontmatch");
         exit();
-    }
+    } 
     if (idexist($conn,$id)) {
+        // hayrga3 tany 3la el sign up
         header("location: ../signup.php?error=idexists");
         exit();
     }
