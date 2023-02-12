@@ -69,9 +69,12 @@ include_once "include/functions.php";
         <button type="submit" name="update">Update</button>
         <input type="reset">
     </form>
-    <?php
-    if (isset($_GET["error"]))
-    echo "Email already exists";
+    <?php 
+    //FIXME:  fixed ! ^^
+    if (isset($_GET["error"])) {
+        if ($_GET["error"] != "none")
+            echo "Email already exists";
+    }
     ?>
     <?php
     include_once "footer.php";

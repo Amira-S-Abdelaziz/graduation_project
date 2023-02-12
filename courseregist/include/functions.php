@@ -1,17 +1,18 @@
 <?php
+// FIXME:  fixed ! ^^
 $alldepart[0] = "No Department";
-$alldepart[1] = "حوسبة ومعلوماتية حيوية";
-$alldepart[2] = "ميكروبيولوجي";
-$alldepart[3] = "حاسب";
-$alldepart[4] = "جيولوجيا والغاز الطبيعي";
-$alldepart[5] = "فيزياء";
-$alldepart[6] = "رياضيات";
-$alldepart[7] = "كيمياء حيوي";
-$alldepart[8] = "كيمياء صناعي";
-$alldepart[9] = "بايو تكنولوجي ";
-$alldepart[10] = "رصد البيئي";
+$alldepart[1] = "الرياضيات وتكنولوجيا المعلومات وعلوم الحاسب";
+$alldepart[2] = "الرياضيات وعلوم الإحصاء";
+$alldepart[3] = " الرياضيات";
+$alldepart[4] = "الفيزياء و الفيزياء التطبيقية";
+$alldepart[5] = "الكيمياء و الكيمياء الصناعية والتطبيقية";
+$alldepart[6] = "الكيمياء و الكيمياء الحيوية";
+$alldepart[7] = "  التكنولوجيا الحيوية";
+$alldepart[8] = " الميكروبيولوجى ";
+$alldepart[9] = "الرصد البيئى وإدارة البيئة";
+$alldepart[10] = "جيولوجيا البترول والغاز الطبيعى";
 $alldepart[11] = "علوم البحار";
-$alldepart[12] = "احصاء";
+$alldepart[12] = "حوسبة";
 function idmatch($id, $idrepeat)
 {
     if ($id === $idrepeat)
@@ -26,9 +27,9 @@ function passmatch($pass, $passrepeat)
     else
         return false;
 }
-function idexist($conn, $id)
+function idexist($conn,$id,$table)
 {
-    $sql = "SELECT * FROM users WHERE userNid = ?;";
+    $sql = "SELECT * FROM ".$table."s WHERE ".$table."Nid = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         // matgesh gambaha 
@@ -80,14 +81,17 @@ function createuser($conn, $name, $id,  $phone, $email, $pass, $address, $level,
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
     mysqli_stmt_close($stmt);
-    header("location: ../signup.php?error=none");
+    header("location: ../signup.php?error=none&op=Sign In");
     exit();
 }
 function updateinfo($conn, $name, $id,  $phone, $email, $pass, $address, $level, $department)
 {
-    if (emailexist($conn, $email)) {
-        header("location: ../profile.php?error=emailexists");
-        exit();
+    //FIXME: fixed ! ^^
+    if ($email != $_SESSION["userEmail"]) {
+        if (emailexist($conn, $email)) {
+            header("location: ../profile.php?error=emailexists");
+            exit();
+        }
     }
     $sql = "UPDATE users SET userName = ?,
 userPhone=?,
@@ -200,17 +204,17 @@ function loginuser($conn, $logemail, $logpass)
 {
     $exist = emailexist($conn, $logemail);
     if ($exist === false) {
-        header("location:../login.php?error=emaildoesntexist");
+        header("location:../signup.php?error=emaildoesntexist&op=Sign In");
         exit();
     }
 
     $passhashed = $exist["userPass"];
     $checkpass = password_verify($logpass, $passhashed);
     if ($checkpass === false) {
-        header("location: ../login.php?error=wrongpass");
+        header("location: ../signup.php?error=wrongpass&op=Sign In");
         exit();
     }
-    if ($checkpass === true) {
+    if ($checkpass === true) 
         session_start();
         // $_SESSION["userid"] = $exist["id"];
         $_SESSION["userName"] = $exist["userName"];
@@ -225,5 +229,5 @@ function loginuser($conn, $logemail, $logpass)
         // convertDepart($_SESSION["userDepart"]);
         header("location: ../index.php");
         exit();
-    }
+    
 }
