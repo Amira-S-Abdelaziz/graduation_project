@@ -2,16 +2,16 @@
 if (isset($_POST["submit"])) {
     require_once "dbc.php";
     require_once "functions.php";
-    $name=$_POST["name"];
-    $id = $_POST["id"];
-    $idrepeat = $_POST["idrepeat"];
-    $phone=$_POST["phone"];
-    $email = $_POST["email"];
+    $name=trim($_POST["name"]);
+    $id = trim($_POST["id"]);
+    $idrepeat = trim($_POST["idrepeat"]);
+    $phone= trim($_POST["phone"]);
+    $email = trim($_POST["email"]);
     $pass = $_POST["pass"];
     $passrepeat = $_POST["passrepeat"];
     $address=$_POST["address"];
-    $level=$_POST["level"];
-    $department=$_POST["depart"];
+    // $level=$_POST["level"];
+    // $department=$_POST["depart"];
     $op=$_POST['submit'];
     if (!idmatch($id, $idrepeat)) 
     {
@@ -37,7 +37,7 @@ if (isset($_POST["submit"])) {
         header("location: ../signup.php?error=emailexists&op=$op");
         exit();
     }
-    createuser($conn,$name,$id,$phone,$email ,$pass,$address,$level,$department);
+    createuser($conn,$name,$id,$phone,$email ,$pass,$address);
 } else {
     header("location: ../signup.php");
 }

@@ -16,6 +16,12 @@
     <?php
     include_once "header.php";
     include_once "include/functions.php";
+
+    // session_start();
+    if (isset($_SESSION["userNid"])) {
+        header("location: dashboard.php");
+        exit();
+    }
     ?>
     <!-- <h1>Sign up</h1> <br> -->
     <!-- byro7 3la el data base -->
@@ -80,23 +86,23 @@
 
 
                         <div class="group">
-                            <label> level </label>
+                            <!-- <label> level </label>
                             <br>
-                            <select required name="level">
-                                <?php
-                                for ($i = 1; $i <= 4; $i++)
-                                    echo "<option value='$i'>level $i</option>"
-                                ?>
-                            </select>
+                            <select required name="level"> -->
+                            <!--                                 
+                                // for ($i = 1; $i <= 4; $i++)
+                                //     echo "<option value='$i'>level $i</option>" -->
+
+                            <!-- </select>
                             <br>
                             <label> Department </label>
                             <br>
-                            <select required name="depart">
-                                <?php
-                                for ($i = 0; $i <= 12; $i++)
-                                    echo "<option value='$i'>" . $alldepart[$i] . "</option>";
-                                ?>
-                            </select>
+                            <select required name="depart"> -->
+
+                            <!-- // for ($i = 0; $i <= 12; $i++)
+                                    // echo "<option value='$i'>" . $alldepart[$i] . "</option>"; -->
+
+                            <!-- </select> -->
                             <br>
                             <input type="submit" name="submit" value="Sign Up">
 

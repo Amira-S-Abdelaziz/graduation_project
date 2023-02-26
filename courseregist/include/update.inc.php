@@ -4,14 +4,12 @@ include_once "dbc.php";
 session_start();
 updateinfo(
     $conn,
-    $_POST["name"],
-    $_SESSION["userNid"],
-    $_POST["phone"],
-    $_POST["email"],
+    trim($_POST["name"]),
+    trim($_SESSION["userNid"]),
+    trim($_POST["phone"]),
+    trim($_POST["email"]),
     $_POST["pass"],
-    $_POST["address"],
-    $_POST["level"],
-    $_POST["depart"]
+    $_POST["address"]
 );
-header("location: ../profile.php?error=none");
+header("location: ../dashboard.php?error=none");
 exit();

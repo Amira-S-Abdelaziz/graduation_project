@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST["submit"]))
 {
-    $logemail=$_POST["logemail"];
+    $logemail=trim($_POST["logemail"]);
     $logpass=$_POST["logpass"];
 
     require_once "dbc.php";
